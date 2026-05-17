@@ -4,12 +4,13 @@ This project includes a clean interface, a circular timer, lap tracking, and cou
 
 ##Project Files
 
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+index.html
+style.css
+script.js
+README.md
 
 ##Built With
+
 HTML5
 CSS3
 JavaScript
