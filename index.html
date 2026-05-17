@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Stopwatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<main class="shell">
+    <section class="panel" aria-label="Digital stopwatch">
+        <div class="panel-top">
+            <div>
+                <p class="eyebrow">Digital Timer</p>
+                <h1>Stopwatch</h1>
+            </div>
+            <div class="status-pill" id="status">READY</div>
+        </div>
+
+        <div class="mode-bar">
+            <label class="select-wrap" for="mode">
+                <span>Mode</span>
+                <select id="mode" onchange="changeMode()">
+                    <option value="stopwatch">STOPWATCH</option>
+                    <option value="countdown">COUNTDOWN</option>
+                </select>
+            </label>
+
+            <div id="cdInput" class="countdown-input" aria-label="Countdown duration">
+                <label>
+                    <span>Min</span>
+                    <input type="number" id="min" placeholder="00" min="0">
+                </label>
+                <label>
+                    <span>Sec</span>
+                    <input type="number" id="sec" placeholder="00" min="0" max="59">
+                </label>
+            </div>
+        </div>
+
+        <div class="ring">
+            <svg viewBox="0 0 220 220" aria-hidden="true">
+                <circle class="bg" cx="110" cy="110" r="100"></circle>
+                <circle class="progress" id="progress" cx="110" cy="110" r="100"></circle>
+            </svg>
+            <div class="display" id="display">00:00:00.00</div>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="start()">START</button>
+            <button onclick="pause()">PAUSE</button>
+            <button onclick="lap()">LAP</button>
+            <button onclick="reset()">RESET</button>
+        </div>
+
+        <div class="laps-wrap">
+            <div class="laps-title">
+                <span>Laps</span>
+                <small id="lapCount">0 saved</small>
+            </div>
+            <div class="laps" id="laps"></div>
+        </div>
+
+        <div class="watermark">Made by Areen Shrestha</div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+:root {
+    --bg: #0c1018;
+    --panel: rgba(20, 28, 43, 0.88);
+    --panel-border: rgba(255, 255, 255, 0.12);
+    --text: #f6f8fb;
+    --muted: #9aa8bd;
+    --cyan: #4dd7ff;
+    --green: #51e6a5;
+    --amber: #ffcc66;
+    --red: #ff6b7a;
+    --shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text);
+    font-family: "Inter", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(77, 215, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(81, 230, 165, 0.14), transparent 24%),
+        linear-gradient(135deg, #0c1018 0%, #151b27 52%, #0d131c 100%);
+}
+
+.shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+}
+
+.panel {
+    position: relative;
+    width: min(460px, 100%);
+    padding: 28px;
+    overflow: hidden;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+}
+
+.panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), transparent 36%);
+}
+
+.panel-top,
+.mode-bar,
+.controls,
+.laps-wrap,
+.watermark {
+    position: relative;
+    z-index: 1;
+}
+
+.panel-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 8vw, 3.8rem);
+    line-height: 0.95;
+}
+
+.status-pill {
+    min-width: 78px;
+    padding: 8px 10px;
+    border: 1px solid rgba(77, 215, 255, 0.36);
+    border-radius: 999px;
+    color: var(--cyan);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: center;
+    background: rgba(77, 215, 255, 0.08);
+}
+
+.mode-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 24px;
+}
+
+.select-wrap,
+.countdown-input label {
+    display: grid;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+select,
+input {
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    color: var(--text);
+    font: inherit;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.06);
+    outline: none;
+}
+
+select {
+    width: 100%;
+    padding: 0 12px;
+}
+
+input {
+    width: 70px;
+    padding: 0 10px;
+}
+
+select:focus,
+input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(77, 215, 255, 0.15);
+}
+
+.countdown-input {
+    display: none;
+    grid-template-columns: repeat(2, 70px);
+    gap: 10px;
+}
+
+.countdown-input.show {
+    display: grid;
+}
+
+.ring {
+    position: relative;
+    z-index: 1;
+    width: min(280px, 82vw);
+    aspect-ratio: 1;
+    margin: 0 auto 26px;
+    display: grid;
+    place-items: center;
+}
+
+.ring svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    filter: drop-shadow(0 0 18px rgba(77, 215, 255, 0.18));
+}
+
+circle {
+    fill: none;
+    stroke-width: 10;
+}
+
+.bg {
+    stroke: rgba(255, 255, 255, 0.09);
+}
+
+.progress {
+    stroke: url("#timer-gradient");
+    stroke: var(--cyan);
+    stroke-linecap: round;
+    stroke-dasharray: 628;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.18s linear, stroke 0.2s ease;
+}
+
+.display {
+    width: 100%;
+    padding: 0 14px;
+    color: #ffffff;
+    font-family: "Orbitron", monospace;
+    font-size: clamp(1.48rem, 7vw, 2.05rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+    text-shadow: 0 0 22px rgba(77, 215, 255, 0.56);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+button {
+    min-height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.07);
+    transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(77, 215, 255, 0.45);
+    background: rgba(77, 215, 255, 0.12);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button.primary {
+    border-color: rgba(81, 230, 165, 0.48);
+    color: #07140f;
+    background: linear-gradient(135deg, var(--green), var(--cyan));
+}
+
+.laps-wrap {
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.laps-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.laps {
+    max-height: 120px;
+    overflow: auto;
+    display: grid;
+    gap: 6px;
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    color: #eaf1ff;
+    font-family: "Orbitron", monospace;
+    font-size: 0.82rem;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.watermark {
+    margin-top: 18px;
+    color: rgba(246, 248, 251, 0.58);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+@media (max-width: 440px) {
+    .panel {
+        padding: 22px 16px;
+    }
+
+    .panel-top,
+    .mode-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-top {
+        display: grid;
+    }
+
+    .status-pill {
+        width: max-content;
+    }
+
+    .controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
